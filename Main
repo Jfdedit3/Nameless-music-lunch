@@ -1,0 +1,19 @@
+-- Création d'un script qui télécharge et exécute un code externe depuis un lien
+
+local link = "https://raw.githubusercontent.com/Jfdedit3/Nameless-hub-/refs/heads/main/Nameless%20musique" -- Lien du script à exécuter
+
+-- Fonction pour télécharger et exécuter le script à partir du lien
+local function executeScriptFromLink(url)
+    local success, result = pcall(function()
+        local scriptSource = game:HttpGet(url)  -- Récupérer le contenu du script
+        loadstring(scriptSource)()  -- Exécuter le script téléchargé
+    end)
+
+    -- Si une erreur se produit, afficher un message
+    if not success then
+        warn("Erreur lors de l'exécution du script: " .. result)
+    end
+end
+
+-- Lancer l'exécution du script depuis le lien
+executeScriptFromLink(link)
